@@ -1,3 +1,18 @@
+# Get administrator authority
+function Ensure-Admin {
+    $currentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal = New-Object Security.Principal.WindowsPrincipal($currentUser)
+    if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+        # 관리자 권한이 없는 경우, 관리자 권한으로 스크립트 재실행 요청
+        Write-Host "관리자 권한이 필요합니다. 관리자 권한으로 스크립트를 다시 실행합니다."
+        Start-Process powershell -Verb runAs -ArgumentList ("-NoProfile -ExecutionPolicy Bypass -File `"" + $MyInvocation.MyCommand.Path + "`"")
+        Exit
+    }
+}
+
+# Check Administrator authority
+Ensure-Admin
+
 # Get the script directory
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $adbPath = Join-Path -Path $scriptDir -ChildPath "adb.exe"
