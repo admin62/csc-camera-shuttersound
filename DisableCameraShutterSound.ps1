@@ -19,8 +19,22 @@ function Ensure-Admin {
     }
 }
 
+function Set-ExecutionPolicyIfNeeded {
+    $currentPolicy = Get-ExecutionPolicy
+    if ($currentPolicy -ne "RemoteSigned") {
+        Write-Host "Current policy: $currentPolicy"
+        Write-Host "Change current policy to RemoteSigned."
+        Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+    } else {
+        Write-Host "Current policy is already changed to RemoteSigned."
+    }
+}
+
 # Check Administrator authority
 Ensure-Admin
+
+# Check Execution policy
+Set-ExecutionPolicyIfNeeded
 
 $adbPath = Join-Path -Path $scriptDir -ChildPath "adb.exe"
 
