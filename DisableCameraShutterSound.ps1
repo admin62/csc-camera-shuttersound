@@ -21,8 +21,8 @@ function Ensure-Admin {
 
 function Set-ExecutionPolicyIfNeeded {
     $currentPolicy = Get-ExecutionPolicy
+	Write-Host "Current policy: $currentPolicy"
     if ($currentPolicy -ne "RemoteSigned") {
-        Write-Host "Current policy: $currentPolicy"
         Write-Host "Change current policy to RemoteSigned."
         Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
     } else {
