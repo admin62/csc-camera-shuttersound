@@ -12,10 +12,13 @@ How to use
 01. Open PowerShell with administrator privileges.(C:\Windows\System32\WindowsPowerShell\v1.0)
 01. Type "Set-ExecutionPolicy RemoteSigned"
 01. Type "A"
+01. Type "Set-ExecutionPolicy Unrestricted"
+01. Type "A"
 01. Type "exit"
 01. Download this program.
 01. Locate this program where adb.exe exists.(Same folder)
 01. Connect your Samsung Galaxy to Windows PC.
 01. Let PC access to RSA key fingerprint of the Galaxy.(See pop-up dialog on your Galaxy)
 01. Run this program.
+01. If you encounter Security Policy problem, Type "R" to run this program.
 01. When the end of this file finished with "Camera shutter sound disabled.", then it is done.
